@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 
 	"github.com/nguyenthenguyen/docx"
@@ -10,8 +9,8 @@ import (
 
 var in string
 var out string
-var amount0 int
-var amount1 int
+var amount0 string
+var amount1 string
 
 func init() {
 	return
@@ -30,15 +29,17 @@ func main() {
 	}
 	docx1 := r.Editable()
 
-	docx1.Replace("#__AMOUNT_0__#", strconv.Itoa(amount0), -1)
+	docx1.Replace("#__AMOUNT_0__#", amount0, -1)
 	fmt.Printf("Writing #__AMOUNT_0__# to %v\n", amount0)
-	docx1.Replace("#__AMOUNT_1__#", strconv.Itoa(amount1), -1)
-	fmt.Printf("Writing #__AMOUNT_1__# to %v\n", amount0)
+	docx1.Replace("#__AMOUNT_1__#", amount1, -1)
+	fmt.Printf("Writing #__AMOUNT_1__# to %v\n", amount1)
 	date := time.Now().Local().String()
 	docx1.Replace("#__DATE__#", date, -1)
 	fmt.Printf("Writing #__DATE__# to %v\n", date)
 	docx1.WriteToFile(out)
 	fmt.Printf("Done writing file: %v\n", out)
+	fmt.Printf("Press any key to exit...\n")
+	fmt.Scanln()
 }
 
 func getInput() {
