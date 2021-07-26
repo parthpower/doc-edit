@@ -1,4 +1,4 @@
-module github.com/parthpoewr/doc-edit
+module github.com/parthpower/doc-edit
 
 go 1.16
 
